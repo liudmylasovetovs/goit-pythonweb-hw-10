@@ -1,5 +1,5 @@
 [project]
-name = "goit-pythonweb-hw-12"
+name = "goit-pythonweb-hw-10"
 version = "0.1.0"
 description = ""
 authors = [
@@ -8,18 +8,9 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "pytest (>=8.3.4,<9.0.0)",
-    "asyncio (>=3.4.3,<4.0.0)",
-    "pytest-asyncio (>=0.25.3,<0.26.0)",
-    "aiosqlite (>=0.20.0,<0.21.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.pytest.ini_options]
-pythonpath = "."
-filterwarnings = "ignore::DeprecationWarning"
-asyncio_default_fixture_loop_scope = "function"

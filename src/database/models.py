@@ -1,17 +1,17 @@
 from datetime import date, datetime
 
-from sqlalchemy import Column, Integer, String, Boolean, func, Table
-from sqlalchemy.orm import relationship, mapped_column, Mapped, DeclarativeBase
+from sqlalchemy import Boolean, Column, Integer, String, Table, func
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.sql.schema import ForeignKey, PrimaryKeyConstraint
-from sqlalchemy.sql.sqltypes import DateTime, Date
+from sqlalchemy.sql.sqltypes import Date, DateTime
+
 
 class Base(DeclarativeBase):
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime, default=func.now()
-    )
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, default=func.now(), onupdate=func.now()
     )
+
 
 class Contact(Base):
     __tablename__ = "contacts"
@@ -26,8 +26,8 @@ class Contact(Base):
         "user_id", ForeignKey("users.id", ondelete="CASCADE"), default=None
     )
     user = relationship("User", backref="contacts")
- 
-  
+
+
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
@@ -36,3 +36,4 @@ class User(Base):
     hashed_password = Column(String)
     created_at = Column(DateTime, default=func.now())
     avatar = Column(String(255), nullable=True)
+    confirmed = Column(Boolean, default=False)

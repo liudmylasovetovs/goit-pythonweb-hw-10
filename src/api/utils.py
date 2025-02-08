@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
-
-from src.database.db import get_db
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.conf import messages
+from src.database.db import get_db
 
 router = APIRouter(tags=["utils"])
+
 
 @router.get("/healthchecker")
 async def healthchecker(db: AsyncSession = Depends(get_db)):
@@ -26,4 +26,4 @@ async def healthchecker(db: AsyncSession = Depends(get_db)):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Error connecting to the database",
-        )
+        ) from e

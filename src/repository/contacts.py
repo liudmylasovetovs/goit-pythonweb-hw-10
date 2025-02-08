@@ -51,7 +51,7 @@ class ContactRepository:
         return contact
 
     async def search_contacts(
-        self, search: str, skip: int, limit: int
+        self, search: str, skip: int, limit: int, 
     ) -> List[Contact]:
         stmt = (
             select(Contact)

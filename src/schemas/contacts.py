@@ -28,15 +28,3 @@ class ContactResponse(ContactBase):
 
 class ContactBirthdayRequest(BaseModel):
     days: int = Field(ge=0, le=366)
-
-    # @field_validator('month')
-    # def validate_month(cls, v):
-    #     if v < 1 or v > 12:
-    #         raise ValueError('Month must be between 1 and 12')
-    #     return v
-
-    # @field_validator('day')
-    # def validate_day(cls, v):
-    #     if v < 1 or v > 31:
-    #         raise ValueError('Day must be between 1 and 31')
-    #     return v
